@@ -4,12 +4,12 @@
 \alias{scale_untransform}
 \title{Returns a normalized dataset to its original scale}
 \usage{
-scale_untransform(x, scal)
+scale_untransform(scal, x)
 }
 \arguments{
-\item{x}{the data normalized by columns}
-
 \item{scal}{the scaling object}
+
+\item{x}{the data normalized by columns}
 }
 \value{
 the data in its original scale

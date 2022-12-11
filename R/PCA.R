@@ -25,7 +25,7 @@ scale_fit <- function(x, center=TRUE, scale=TRUE) {
 #' @param x dataset with observations in rows, variables in columns
 #' @param scal the scaling object
 #' @return the normalized data
-scale_transform <- function(x, scal) {
+scale_transform <- function(scal, x) {
   out <- sweep(x, 2, scal$means, "-")
   sweep(out, 2, scal$sds, "/")
 }
@@ -36,7 +36,7 @@ scale_transform <- function(x, scal) {
 #' @param scal the scaling object
 #' @return the data in its original scale
 #' @export
-scale_untransform <- function(x, scal) {
+scale_untransform <- function(scal, x) {
   out <- sweep(x, 2, scal$sds, "*")
   sweep(out, 2, scal$means, "+")
 }
@@ -51,7 +51,7 @@ scale_untransform <- function(x, scal) {
 pca_fit <- function(x, scale=TRUE) {
   # Normalize the data
   scal <- scale_fit(x, TRUE, scale)
-  normalized <- scale_transform(x, scal)
+  normalized <- scale_transform(scal, x)
   # Do PCA on normalized data
   svd_obj <- svd(normalized)
   list(scale=scal, svd=svd_obj)
@@ -83,9 +83,9 @@ subset_cols <- function(x, n) {
 #' @return x transformed to its principal components.
 #'    Column order: PC1, PC2, ...
 #' @export
-pca_transform <- function(x, pca, ncomp=NA) {
+pca_transform <- function(pca, x, ncomp=NA) {
   scal <- pca$scale
-  normalized <- scale_transform(x, scal)
+  normalized <- scale_transform(scal, x)
   if (is.na(ncomp)) {
     ncomp <- ncol(x)
   }
@@ -98,10 +98,10 @@ pca_transform <- function(x, pca, ncomp=NA) {
 #' @param pca PCA object returned by pca_fit
 #' @return matrix in its original scale
 #' @export
-pca_untransform <- function(pc, pca) {
+pca_untransform <- function(pca, pc) {
   scal <- pca$scale
   normalized <- pc %*% t(subset_cols(pca$svd$v, ncol(pc)))
-  scale_untransform(normalized, scal)
+  scale_untransform(scal, normalized)
 }
 
 #' Explained variance of each principal component

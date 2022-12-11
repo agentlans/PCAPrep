@@ -4,12 +4,12 @@
 \alias{pca_transform}
 \title{Returns the principal components of x}
 \usage{
-pca_transform(x, pca, ncomp = NA)
+pca_transform(pca, x, ncomp = NA)
 }
 \arguments{
-\item{x}{input matrix}
-
 \item{pca}{PCA object returned by pca_fit}
+
+\item{x}{input matrix}
 
 \item{ncomp}{number of PCs to return or NA for all of them}
 }

@@ -4,12 +4,12 @@
 \alias{pca_untransform}
 \title{Reconstructs matrix from its principal components}
 \usage{
-pca_untransform(pc, pca)
+pca_untransform(pca, pc)
 }
 \arguments{
-\item{pc}{principal components}
-
 \item{pca}{PCA object returned by pca_fit}
+
+\item{pc}{principal components}
 }
 \value{
 matrix in its original scale

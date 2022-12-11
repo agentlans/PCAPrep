@@ -4,12 +4,12 @@
 \alias{scale_transform}
 \title{Transforms a dataset using the given scaling parameters}
 \usage{
-scale_transform(x, scal)
+scale_transform(scal, x)
 }
 \arguments{
-\item{x}{dataset with observations in rows, variables in columns}
-
 \item{scal}{the scaling object}
+
+\item{x}{dataset with observations in rows, variables in columns}
 }
 \value{
 the normalized data
