@@ -14,7 +14,8 @@ pca_transform(x, pca, ncomp = NA)
 \item{ncomp}{number of PCs to return or NA for all of them}
 }
 \value{
-x transformed to its principal components
+x transformed to its principal components.
+   Column order: PC1, PC2, ...
 }
 \description{
 Returns the principal components of x

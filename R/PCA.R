@@ -103,3 +103,14 @@ pca_untransform <- function(pc, pca) {
   normalized <- pc %*% t(subset_cols(pca$svd$v, ncol(pc)))
   scale_untransform(normalized, scal)
 }
+
+#' Explained variance of each principal component
+#' 
+#' @param pca PCA object returned by pca_fit
+#' @return a vector of each principal component's explained variance
+#' @export
+pca_explained_variance <- function(pca) {
+  d <- pca$svd$d
+  n <- nrow(pca$svd$u)
+  d * d / (n-1)
+}
